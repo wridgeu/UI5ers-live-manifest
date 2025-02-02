@@ -1,0 +1,27 @@
+specVersion: "3.1"
+metadata:
+  name: myui5app
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://sdk.openui5.org
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: preview-middleware
+      afterMiddleware: compression
+      configuration:
+        test:
+          - framework: Qunit
+          - framework: OPA5
