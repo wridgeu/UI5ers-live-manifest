@@ -1,7 +1,7 @@
-<mvc:View controllerName="myui5app.controller.MainView"
+<mvc:View controllerName="myui5app.controller.SecondView"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <Button text="Nav to 2nd" press="onBtnPress"/>
+        <!-- <TextArea/> -->
     </Page>
 </mvc:View>

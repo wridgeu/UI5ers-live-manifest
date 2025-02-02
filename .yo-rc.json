@@ -8,6 +8,9 @@
     "ui5Libs": "Content delivery network (OpenUI5)",
     "newDir": false,
     "initRepo": true,
-    "projectId": "com.myorg.myui5project"
+    "projectId": "com.myorg.myui5project",
+    "uimodules": [
+      "myui5app"
+    ]
   }
 }

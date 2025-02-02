@@ -63,6 +63,7 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
+                "type": "View",
                 "async": true,
                 "viewPath": "myui5app.view",
                 "controlAggregation": "pages",
@@ -76,15 +77,26 @@
                     "target": [
                         "TargetMainView"
                     ]
+                },
+                {
+                    "name": "RouteSecondView",
+                    "pattern": "second",
+                    "target": [
+                        "TargetSecondView"
+                    ]
                 }
             ],
             "targets": {
                 "TargetMainView": {
+                    "id": "MainView",
+                    "name": "MainView"
+                },
+                "TargetSecondView": {
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,
-                    "viewId": "MainView",
-                    "viewName": "MainView"
+                    "viewId": "SecondView",
+                    "viewName": "SecondView"
                 }
             }
         },

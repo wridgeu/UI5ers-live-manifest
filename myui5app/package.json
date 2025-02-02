@@ -9,12 +9,16 @@
         "sapui5"
     ],
     "main": "webapp/index.html",
-    "dependencies": {},
     "devDependencies": {
-        "@ui5/cli": "^3.0.0",
+        "@sap-ux/eslint-plugin-fiori-tools": "^0.2",
         "@sap/ux-ui5-tooling": "1",
+        "@ui5/cli": "^3.0.0",
         "@ui5/linter": "latest",
-        "@sap-ux/eslint-plugin-fiori-tools": "^0.2"
+        "@wdio/cli": "^8.41.0",
+        "@wdio/local-runner": "^8.41.0",
+        "@wdio/mocha-framework": "^8.41.0",
+        "@wdio/spec-reporter": "^8.41.0",
+        "wdio-ui5-service": "^2.0.10"
     },
     "scripts": {
         "start": "fiori run --open index.html",
@@ -22,6 +26,7 @@
         "ui5lint": "ui5lint",
         "lint": "eslint ./",
         "qunit": "fiori run --open test/unitTests.qunit.html",
-        "opa5": "fiori run --open test/opaTests.qunit.html"
+        "opa5": "fiori run --open test/opaTests.qunit.html",
+        "wdi5": "wdio run ./webapp/test/e2e/\\wdio.conf.js"
     }
 }
