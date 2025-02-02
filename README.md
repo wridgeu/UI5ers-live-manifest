@@ -1,7 +1,8 @@
 # com.myorg.myui5project
 
 Q: CIL? => https://github.com/SAP/ui5-manifest/blob/d28f1df75b48b6ad65d41d0298649d738c78654a/schema_cil.json
-Q: Copy Paste error, what now?: => https://ui5.sap.com/sdk/#/topic/902313063d6f45aeaa3388cc4c13c34e 
+
+Q: Copy Paste error, what now?
 
 Docs: Descriptor `manifest.json`:  https://ui5.sap.com/#/topic/74038a52dcd7404e82b38be6d5fb1458
 Docs: Descriptor Details (`_version`): https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da
