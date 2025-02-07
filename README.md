@@ -4,12 +4,24 @@ Q: CIL? => https://github.com/SAP/ui5-manifest/blob/d28f1df75b48b6ad65d41d029864
 
 Q: `_version` of `sap.app` and other namespaces, sometimes not part of scaffold, is default latest, is there a version specific structure for these namespaces as well?
 
-Q: Binding: `{{appTitle}}` & `{{key in .properties file}}` or `"${project.version}"`? See: https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458
+Q: Binding: `{{appTitle}}` & `{{key in .properties file}}` or `"${project.version}"`? See: https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458 (issue with `${version}`: https://github.com/SAP/ui5-tooling/issues/403)
 
-Q: Copy Paste error, what now?
+Q: What is the minimum content for a manifest to work per application/component?
+
+Q: `sourceTemplate` what is it used for and does it help me as developer in any way? 
+
+Q: `IAsyncContentCreation` tag interface vs manifest `async` keys what matters more/less? See: https://ui5.sap.com/sdk/#/topic/676b636446c94eada183b1218a824717
+
+Q: Why can't I just generate what I need once, and be done with it?
+
+Q: Can I adjust the manifest on the fly via tooling or provide one dynamically (yes)? See: https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637 or https://x.com/marcel_schork/status/1717287636929257815
+
+Q: `minUI5Version` & `minVersion`?
+
+Q: Copy Paste error, what now? → application issue, colleague
 
 Docs: Descriptor `manifest.json`:  https://ui5.sap.com/#/topic/74038a52dcd7404e82b38be6d5fb1458
-Docs: Descriptor Details (`_version`): https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da
+Docs: Descriptor Details (`_version`): https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da → https://stackoverflow.com/a/72123051/10323879 (from the UI5 Team!)
 
 Manifest Repository: https://github.com/SAP/ui5-manifest
 - Version Mappings: https://github.com/SAP/ui5-manifest/blob/main/mapping.json
