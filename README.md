@@ -20,6 +20,8 @@ Q: `minUI5Version` & `minVersion`?
 
 Q: Copy Paste error, what now? → application issue, colleague
 
+---
+
 Docs: Descriptor `manifest.json`:  https://ui5.sap.com/#/topic/74038a52dcd7404e82b38be6d5fb1458
 Docs: Descriptor Details (`_version`): https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da → https://stackoverflow.com/a/72123051/10323879 (from the UI5 Team!)
 
