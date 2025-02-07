@@ -12,13 +12,11 @@ Q: `sourceTemplate` what is it used for and does it help me as developer in any 
 
 Q: `IAsyncContentCreation` tag interface vs manifest `async` keys what matters more/less? See: https://ui5.sap.com/sdk/#/topic/676b636446c94eada183b1218a824717
 
-Q: Why can't I just generate what I need once, and be done with it?
-
 Q: Can I adjust the manifest on the fly via tooling or provide one dynamically (yes)? See: https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637 or https://x.com/marcel_schork/status/1717287636929257815
 
 Q: `minUI5Version` & `minVersion`?
 
-Q: Copy Paste error, what now? → application issue, colleague
+Q: Why can't I just generate what I need once, and be done with it?
 
 ---
 
@@ -57,12 +55,18 @@ https://www.schemastore.org/json/
 
 See also [UI5 Documentation](https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da) for "No Namespace". Or [directly](https://github.com/SAP/ui5-manifest/blob/c00f35ab0e4dabe03c8c83f47421a9055a67ff4c/schema.json#L12-L16).
 
+Alternatively: `https://github.com/SAP/ui5-manifest/blob/main/schema.json` or local in your workspace `../manifest_schema.json`
+
 ```json
 {
-  "$schema": "https://json.schemastore.org/coffeelint",
-  "line_endings": "unix"
+  "$schema": "https://raw.githubusercontent.com/SAP/ui5-manifest/master/schema.json"
 }
 ```
+
+> [!NOTE] 
+> Check `{}` - Schema Validation Status Bar.
+> 
+> If the validation isn't updated once it was set: reload schema cache, navigate to different file & back, reload window or restart editor.
 
 ## Generated Manifest from BTP (BAS) 
 
