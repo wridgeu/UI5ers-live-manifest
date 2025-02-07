@@ -2,6 +2,10 @@
 
 Q: CIL? => https://github.com/SAP/ui5-manifest/blob/d28f1df75b48b6ad65d41d0298649d738c78654a/schema_cil.json
 
+Q: `_version` of `sap.app` and other namespaces, sometimes not part of scaffold, is default latest, is there a version specific structure for these namespaces as well?
+
+Q: Binding: `{{appTitle}}` & `{{key in .properties file}}` or `"${project.version}"`? See: https://ui5.sap.com.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458
+
 Q: Copy Paste error, what now?
 
 Docs: Descriptor `manifest.json`:  https://ui5.sap.com/#/topic/74038a52dcd7404e82b38be6d5fb1458
