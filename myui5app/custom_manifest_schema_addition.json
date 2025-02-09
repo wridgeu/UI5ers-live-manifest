@@ -1,0 +1,21 @@
+{
+	"title": "Custom Schema File - Merging Two Schemas",
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"type": "object",
+	"allOf": [{ "$ref": "./manifest_schema.json" }],
+	"properties": {
+		"custom_property": { "type": "string" }
+	},
+	"required": ["custom_property"]
+}
+
+// "allOf": [
+// 	{
+// 		"$ref": "./manifest_schema.json"
+// 	},
+// 	{
+// 		"properties": {
+// 			"custom_property": { "type": "string" }
+// 		}
+// 	}
+// ]
