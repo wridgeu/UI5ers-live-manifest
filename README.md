@@ -37,7 +37,7 @@
 
 - **Q: What is my UI5 version and is it one of these `minUI5Version` & `minVersion`? See: [SAP Fiori Tools User Guide](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/009f43e381234626b41e542dd7335672.html)**
 
-	**A:** As the name suggests, the `minUI5Version` is the minimum UI5 version that is required at runtime to support the features used in the application. The same goes for the dependency section. They do not _force_ a version per se but may influence things like tooling behavior see: [GH Issue](https://github.com/SAP/ui5-tooling/issues/369)).
+	**A:** As the name suggests, the `minUI5Version` is the minimum UI5 version that is required at runtime to support the features used in the application. The same goes for the dependency section. They do not _force_ a version per se but may be used for feature detection (e.g. application modeler & guided development) and can influence things like tooling behavior (e.g. [GH Issue](https://github.com/SAP/ui5-tooling/issues/369)).
 
 - Q: Can I enhance the `manifest.json` with custom properties, like others do with the `package.json`? Maybe for my own tooling/scripts? Knowing about the `$schema`, could I create a custom schema describing those fields? Would it break UI5, is it strongly discouraged (also: ask peter about the part of last call: UI5 does not enforce or break due to things in manifest, something along those lines)?
 
