@@ -47,7 +47,8 @@
 
 	A: While this is a rather jokingly asked question, it does have some merit as not everyone _wants_ to fiddle with it and not everyone does so in his day to day. But you have to understand that the entire application itself, manifests in this file and therefore, as the application changes, so does the manifest. A living document so to say.
 
-> [!INFO] 
+> [!TIP] 
+>
 > The `manifest.json` is not the only file with a schema! The [ui5-workspace.yaml](https://sap.github.io/ui5-tooling/schema/ui5-workspace.yaml.json) and [ui5.yaml](https://sap.github.io/ui5-tooling/schema/ui5.yaml.json) have one too!
 
 ## General Information
