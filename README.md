@@ -1,41 +1,76 @@
-# com.myorg.myui5project
+# UI5ers Live `manifest.json`
 
-Q: CIL? => https://github.com/SAP/ui5-manifest/blob/d28f1df75b48b6ad65d41d0298649d738c78654a/schema_cil.json
+## Q & A
 
-Q: `_version` of `sap.app` and other namespaces, sometimes not part of scaffold, is default latest, is there a version specific structure for these namespaces as well?
+- **Q: What does the [CIL](https://github.com/SAP/ui5-manifest/blob/d28f1df75b48b6ad65d41d0298649d738c78654a/schema_cil.json) stand for?**
 
-Q: Binding: `{{appTitle}}` & `{{key in .properties file}}` or `"${project.version}"`? See: https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458 (issue with `${version}`: https://github.com/SAP/ui5-tooling/issues/403)
+	**A:** Component In Library
 
-Q: What is the minimum content for a manifest to work per application/component?
+- **Q: `_version` of `sap.app` (and other namespaces). Sometimes not part of scaffold: is default latest? is there a version specific structure for these namespaces as well?**
 
-Q: `sourceTemplate` what is it used for and does it help me as developer in any way? 
+	**A:** The namespace dependent `_version` property is and was barely used. It is also not part of the current scaffolding generators anymore.
 
-Q: `IAsyncContentCreation` tag interface vs manifest `async` keys what matters more/less? See: https://ui5.sap.com/sdk/#/topic/676b636446c94eada183b1218a824717
+- **Q: `_version` of the `manifest.json` itself?**
 
-Q: Can I adjust the manifest on the fly via tooling or provide one dynamically (yes)? See: https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637 or https://x.com/marcel_schork/status/1717287636929257815
+	**A:** Referencing the schema version and used for validation and code completion (IntelliSense in IDE). 
+	> "On the runtime side, [...] only one changed behavior based on the vesion of the manifest quite some time ago (since UI5 1.52, schema version 1.9.0)." - [UI5 Team on SO](https://stackoverflow.com/a/72123051/10323879)
 
-Q: `minUI5Version` & `minVersion`?
+- **Q: Possible Bindings in Manifest? Like `{{appTitle}}` (`{{key in .properties file}}`) or `"${project.version}"`? See: [Descriptor Documentation](https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458) ( [GH issue](https://github.com/SAP/ui5-tooling/issues/403) in UI5 Tooling with `${version}`)**
 
-Q: Why can't I just generate what I need once, and be done with it?
+	**A:**
 
----
+- **Q: What is the minimum content for a manifest to work per application/component?**
 
-Docs: Descriptor `manifest.json`:  https://ui5.sap.com/#/topic/74038a52dcd7404e82b38be6d5fb1458
-Docs: Descriptor Details (`_version`): https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da → https://stackoverflow.com/a/72123051/10323879 (from the UI5 Team!)
+	**A:** Depends on the type of application you're working with (UI5 application/component, Cards, etc.). Best to rely on the corresponding generator.
 
-Manifest Repository: https://github.com/SAP/ui5-manifest
-- Version Mappings: https://github.com/SAP/ui5-manifest/blob/main/mapping.json
-- Schema: https://github.com/SAP/ui5-manifest/blob/main/schema.json
+- **Q: `sourceTemplate` what is it used for and does it help me as developer in any way?**
 
-## VSCode Settings - JSON schema
+	**A:** A rather technical key, answering what the source of the generation was. General information for tooling. Only exists when corresponding tooling was used (i.e. in BAS).
 
-https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings
-https://www.schemastore.org/json/
+- **Q: `IAsyncContentCreation` tag interface vs manifest `async` keys what matters more/less? See: [Async Loading Documentation](https://ui5.sap.com/sdk/#/topic/676b636446c94eada183b1218a824717)**
+
+	**A:**
+
+- Q: Can I adjust the manifest on the fly via tooling or provide one (or its entries) dynamically (yes)? See: [SAP Community Question by Marcel Schork](https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637) or his [tweet](https://x.com/marcel_schork/status/1717287636929257815)
+
+	**A:** Generally discouraged. There should only be _one_ `manifest.json` and it should be the "source of truth". Decoupling something like the `dataSources` via a general Data Source API could be done (and was once tried by SAP? => couldn't find the sources anymore). These parts have rather "historically grown".
+
+- **Q: What is my UI5 version and is it one of these `minUI5Version` & `minVersion`? See: [SAP Fiori Tools User Guide](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/009f43e381234626b41e542dd7335672.html)**
+
+	**A:** As the name suggests, the `minUI5Version` is the minimum UI5 version that is required at runtime to support the features used in the application. The same goes for the dependency section. They do not _force_ a version per se but may influence things like tooling behavior see: [GH Issue](https://github.com/SAP/ui5-tooling/issues/369)).
+
+- Q: Can I enhance the `manifest.json` with custom properties, like others do with the `package.json`? Maybe for my own tooling/scripts? Knowing about the `$schema`, could I create a custom schema describing those fields? Would it break UI5, is it strongly discouraged (also: ask peter about the part of last call: UI5 does not enforce or break due to things in manifest, something along those lines)?
+
+	**A:** 2nd question: You can merge schema definitions and by doing so, technically create your own! See this [explanation regarding schema inheritance](https://github.com/json-schema-org/json-schema-spec/issues/348#issuecomment-322940347).
+
+- **Q: Why can't I just generate what I need once, and be done with it?**
+
+	A: While this is a rather jokingly asked question, it does have some merit as not everyone _wants_ to fiddle with it and not everyone does so in his day to day. But you have to understand that the entire application itself, manifests in this file and therefore, as the application changes, so does the manifest. A living document so to say.
+
+> [!INFO] 
+> The `manifest.json` is not the only file with a schema! The [ui5-workspace.yaml](https://sap.github.io/ui5-tooling/schema/ui5-workspace.yaml.json) and [ui5.yaml](https://sap.github.io/ui5-tooling/schema/ui5.yaml.json) have one too!
+
+## General Information
+
+### Docs
+- `manifest.json` the descriptor file, see [docs](https://ui5.sap.com/#/topic/74038a52dcd7404e82b38be6d5fb1458)
+- descriptor details (`_version`), see [docs](https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da)
+
+### Manifest Repository 
+- [Repository](https://github.com/SAP/ui5-manifest)
+- [Version Mappings](https://github.com/SAP/ui5-manifest/blob/main/mapping.json)
+- [Schema](https://github.com/SAP/ui5-manifest/blob/main/schema.json)
+
+## VSCode & JSON Schema
+
+- [VSCode Documentation](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings)
+- [Schemastore](https://www.schemastore.org/json/)
 
 ### Settings
-> User Settings or Workspace Settings
 
-`url` can also map to a schema within your workspace.
+#### Workspace / User Specific
+
+The `url` can also map to a schema within your workspace.
 
 ```json
 "json.schemas": [
@@ -49,11 +84,11 @@ https://www.schemastore.org/json/
 ],
 ```
 
-### Inline
+#### Inline
 
-`$schema` - VS Code-specific and not part of the JSON Schema specification.
+The `$schema` property is VSCode specific and not part of the JSON Schema specification!
 
-See also [UI5 Documentation](https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da) for "No Namespace". Or [directly](https://github.com/SAP/ui5-manifest/blob/c00f35ab0e4dabe03c8c83f47421a9055a67ff4c/schema.json#L12-L16).
+UI5 supports the `$schema` property, see also the relevant section in the [documentation](https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da) under "No Namespace". Or [directly](https://github.com/SAP/ui5-manifest/blob/c00f35ab0e4dabe03c8c83f47421a9055a67ff4c/schema.json#L12-L16) in the manifest schema itself!
 
 Alternatively: `https://github.com/SAP/ui5-manifest/blob/main/schema.json` or local in your workspace `../manifest_schema.json`
 
@@ -72,12 +107,13 @@ Alternatively: `https://github.com/SAP/ui5-manifest/blob/main/schema.json` or lo
 
 Basic;
 
-Check out the differences between the Targets, the first target is using the actual/new properties, and thus is incompatible when used with
+Check out the differences between the Targets, the first target is using the actual/new properties, and thus is incompatible when used with the `viewPath`.
+
 ```json
 "viewPath": "myui5app.view", 
 ```
 
-instead you need the `path` property here. What we can learn from the BAS kickstart/template is, that a mix & match for both, legacy and new 
+Instead you need the `path` property here. What we can learn from the BAS kickstart/template is, that a mix & match for both, legacy and new 
 is also possible & allowed!
 
 ```json
