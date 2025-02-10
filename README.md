@@ -31,7 +31,7 @@
 
 	**A:**
 
-- Q: Can I adjust the manifest on the fly via tooling or provide one (or its entries) dynamically (yes)? See: [SAP Community Question by Marcel Schork](https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637) or his [tweet](https://x.com/marcel_schork/status/1717287636929257815)
+- **Q: Can I adjust the manifest on the fly via tooling or provide one (or its entries) dynamically (yes)? See: [SAP Community Question by Marcel Schork](https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637) or his [tweet](https://x.com/marcel_schork/status/1717287636929257815)**
 
 	**A:** Generally discouraged. There should only be _one_ `manifest.json` and it should be the "source of truth". Decoupling something like the `dataSources` via a general Data Source API could be done (and was once tried by SAP? => couldn't find the sources anymore). These parts have rather "historically grown".
 
@@ -39,7 +39,7 @@
 
 	**A:** As the name suggests, the `minUI5Version` is the minimum UI5 version that is required at runtime to support the features used in the application. The same goes for the dependency section. They do not _force_ a version per se but may be used for feature detection (e.g. application modeler & guided development) and can influence things like tooling behavior (e.g. [GH Issue](https://github.com/SAP/ui5-tooling/issues/369)).
 
-- Q: Can I enhance the `manifest.json` with custom properties, like others do with the `package.json`? Maybe for my own tooling/scripts? Knowing about the `$schema`, could I create a custom schema describing those fields? Would it break UI5, is it strongly discouraged (also: ask peter about the part of last call: UI5 does not enforce or break due to things in manifest, something along those lines)?
+- **Q: Can I enhance the `manifest.json` with custom properties, like others do with the `package.json`? Maybe for my own tooling/scripts? Knowing about the `$schema`, could I create a custom schema describing those fields? Would it break UI5, is it strongly discouraged (also: ask peter about the part of last call: UI5 does not enforce or break due to things in manifest, something along those lines)?**
 
 	**A:** 2nd question: You can merge schema definitions and by doing so, technically create your own! See this [explanation regarding schema inheritance](https://github.com/json-schema-org/json-schema-spec/issues/348#issuecomment-322940347).
 
