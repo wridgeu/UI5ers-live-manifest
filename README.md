@@ -35,7 +35,7 @@
 
 	**A:** Generally discouraged. There should only be _one_ `manifest.json` and it should be the "source of truth". Decoupling something like the `dataSources` via a general Data Source API could be done (and was once tried by SAP? => couldn't find the sources anymore). These parts have rather "historically grown".
 
-- **Q: What is my UI5 version and is it one of these `minUI5Version` & `minVersion`? See: [SAP Fiori Tools User Guide](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/009f43e381234626b41e542dd7335672.html)**
+- **Q: Is one of these `minUI5Version` & `minVersion` my UI5 version? See: [SAP Fiori Tools User Guide](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/009f43e381234626b41e542dd7335672.html)**
 
 	**A:** As the name suggests, the `minUI5Version` is the minimum UI5 version that is required at runtime to support the features used in the application. The same goes for the dependency section. They do not _force_ a version per se but may be used for feature detection (e.g. application modeler & guided development) and can influence things like tooling behavior (e.g. [GH Issue](https://github.com/SAP/ui5-tooling/issues/369)).
 
@@ -49,7 +49,7 @@
 
 > [!TIP] 
 >
-> The `manifest.json` is not the only file with a schema! The [ui5-workspace.yaml](https://sap.github.io/ui5-tooling/schema/ui5-workspace.yaml.json) and [ui5.yaml](https://sap.github.io/ui5-tooling/schema/ui5.yaml.json) have one too!
+> The `manifest.json` is not the only UI5 configuration file with a schema! The [ui5-workspace.yaml](https://sap.github.io/ui5-tooling/schema/ui5-workspace.yaml.json) and [ui5.yaml](https://sap.github.io/ui5-tooling/schema/ui5.yaml.json) have one too!
 
 ## General Information
 
