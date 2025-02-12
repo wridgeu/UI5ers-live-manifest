@@ -13,27 +13,67 @@
 
 - **Q: `_version` of `sap.app` (and other namespaces). Sometimes not part of scaffold: is default latest? is there a version specific structure for these namespaces as well?**
 
-	**A:** The namespace dependent `_version` property is and was barely used. It is also not part of the current scaffolding generators anymore.
+	**A:** The namespace dependent `_version` property is and was barely (if ever) used, mostly for SAP internal testing tools or as metadata. It is also not part of the current scaffolding generators anymore.
 
-- **Q: Possible Bindings in Manifest? Like `{{appTitle}}` (`{{key in .properties file}}`) or `"${project.version}"`? See: [Descriptor Documentation](https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458) ( [GH issue](https://github.com/SAP/ui5-tooling/issues/403) in UI5 Tooling with `${version}`)**
+- **Q: Possible Bindings in Manifest? Like `{{appTitle}}` (`{{key in .properties file}}`) or `"${project.version}"`? See: [Descriptor Documentation](https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458) ([GH issue](https://github.com/SAP/ui5-tooling/issues/403) in UI5 Tooling with `${version}`)**
 
-	**A:**
+	**A:** Check out the corresponding [documentation](https://ui5.sap.com/#/topic/be0cf40f61184b358b5faedaec98b2da.html%23loiobe0cf40f61184b358b5faedaec98b2da/section_sap_app) and search for occurences of `{{`. This will help you find the places where binding is possible. As with the mentioned `${version}`, check out the UI5 Tooling and its [possibilities for replacing handlebars during build](https://sap.github.io/ui5-tooling/v3/api/builder_lib_tasks_replaceVersion.js.html)! See also the [builder documentation](https://sap.github.io/ui5-tooling/v3/pages/Builder/) and the mentioned `replaceCopyright` and `replaceVersion` tasks.
 
 - **Q: What is the minimum content for a manifest to work per application/component?**
 
-	**A:** Depends on the type of application you're working with (UI5 application/component, Cards, etc.). Best to rely on the corresponding generator.
+	**A:** Depends on the type of application you're working with (UI5 application/component, Cards, etc.). Best to rely on the corresponding generator. Absolute minimum: - sap.ui section only if dependencies
+	<details>
+	<summary>Theoretical Bare Minimal Manifest</summary>
+
+	Properties like `sap.ui5` would then be required for [dependencies](https://ui5.sap.com/sdk/#/topic/8521ad1955f340f9a6207d615c88d7fd).
+
+	Source: [TS Walkthrough](https://github.com/SAP-samples/ui5-typescript-walkthrough/blob/main/steps/01/webapp/manifest.json)
+	
+	```json
+	{
+	    "_version": "1.60.0",
+	    "sap.app": {
+	        "id": "ui5.walkthrough",
+	        "type": "application",
+	        "title": "OpenUI5 TypeScript Walkthrough",
+	        "applicationVersion": {
+	            "version": "1.0.0"
+	        }
+	    }
+	}
+	```	
+	</details>
 
 - **Q: `sourceTemplate` what is it used for and does it help me as developer in any way?**
 
-	**A:** A rather technical key, answering what the source of the generation was. General information for tooling. Only exists when corresponding tooling was used (i.e. in BAS).
+	**A:** A rather technical/metadata key, answering what the source of the generation was. General information for tooling. Only exists when corresponding tooling was used (i.e. in BAS).
 
 - **Q: `IAsyncContentCreation` tag interface vs manifest `async` keys what matters more/less? See: [Async Loading Documentation](https://ui5.sap.com/sdk/#/topic/676b636446c94eada183b1218a824717)**
 
-	**A:**
+	**A:** Short: The flags within the manifest (i.e. `RootView`) do not have the same effects as using the `IAsyncContentCreation` Interface. As the latter also effects other routing elements.
+	<details>
+	<summary>Details</summary>
+
+	There are three main places where `async` is important & used:
+	1.  The async setting of the component (within bootstrap)
+ 	2.  the RootView and
+  	3.  within routing.
+ 
+  	It is hard to compare these with another as they have different effects and the usage depends on what you want the result to be. Below is more of an Overview than a comparison.
+
+	Effects of `IAsyncContentCreation` Interface
+	- `createContent( )` can be async. This also results in the component factory being delayed.
+ 	- Nested Views are implicitly async. This is the case for all Views/Fragments within (that are part of) an async Owner-Component.
+  	- Sync does not work anymore, as errors will be thrown.
+  	- RootView & Routing configuration will be switched to async. This also results in changes to routes & targets!
+  	- Strict Mode for View Processing. Meaning that errors will be thrown (promises will be rejected).
+
+	There is also a [change in behavior](https://github.com/SAP/openui5/commit/5981ae4115c919f278572e2d2c500933c8c41efc#diff-57834d2526e8323161a07fca4c2b67a70b1843cb7e1e8d8ea32a68876c72b0c9L1677) between Pre- and Post UI5 version `1.125` when using the Interface.
+	</details>
 
 - **Q: Can I adjust the manifest on the fly via tooling or provide one (or its entries) dynamically (yes)? See: [SAP Community Question by Marcel Schork](https://community.sap.com/t5/technology-q-a/dynamic-odata-urls-in-fiori-elements-apps-running-in-cflp/qaq-p/12753637) or his [tweet](https://x.com/marcel_schork/status/1717287636929257815)**
 
-	**A:** Generally discouraged. There should only be _one_ `manifest.json` and it should be the "source of truth". Decoupling something like the `dataSources` via a general Data Source API could be done (and was once tried by SAP? => couldn't find the sources anymore). These parts have rather "historically grown".
+	**A:** Generally discouraged. There should only be _one_ `manifest.json` and it should be the "source of truth". Decoupling something like the `dataSources` via a "general Data Source API" could be done (and was once tried by SAP? => couldn't find the sources anymore). These parts have rather "historically grown".
 
 - **Q: Is one of these `minUI5Version` & `minVersion` my UI5 version? See: [SAP Fiori Tools User Guide](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/009f43e381234626b41e542dd7335672.html)**
 
@@ -41,11 +81,16 @@
 
 - **Q: Can I enhance the `manifest.json` with custom properties, like others do with the `package.json`? Maybe for my own tooling/scripts? Knowing about the `$schema`, could I create a custom schema describing those fields? Would it break UI5, is it strongly discouraged (also: ask peter about the part of last call: UI5 does not enforce or break due to things in manifest, something along those lines)?**
 
-	**A:** 2nd question: You can merge schema definitions and by doing so, technically create your own! See this [explanation regarding schema inheritance](https://github.com/json-schema-org/json-schema-spec/issues/348#issuecomment-322940347).
+	**A:**
+	- Custom sections are generally possible and not actively discouraged, as long as they do not interfere with SAPs namespaces. Or to put it different: as long as it is in your own namespace you may do as you please (e.g. `<company>.<xyz>`. There are no runtime checks from UI5 perspective that would hinder you to do so.
+	  
+	 - You can also merge schema definitions and by doing so, technically create your own, extending upon the UI5 manifest (or any other) schema! See this [explanation regarding schema inheritance](https://github.com/json-schema-org/json-schema-spec/issues/348#issuecomment-322940347). Also check out the demo example within this repository.
+	  
+	- Within `sap.ui5.config` you can also put any sort of custom configuration, as long as it adheres to the allowed types (see schema).
 
 - **Q: Why can't I just generate what I need once, and be done with it?**
 
-	A: While this is a rather jokingly asked question, it does have some merit as not everyone _wants_ to fiddle with it and not everyone does so in his day to day. But you have to understand that the entire application itself, manifests in this file and therefore, as the application changes, so does the manifest. A living document so to say.
+	A: While this is a rather jokingly asked question, it does have some merit as not everyone _wants_ to fiddle with the manifest file and not everyone does so in his day to day work. But you have to understand that the entire application itself, manifests in this file and therefore, as the application changes, so does the manifest. A living document so to say.
 
 > [!TIP] 
 >
