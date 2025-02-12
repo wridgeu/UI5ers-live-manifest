@@ -150,7 +150,7 @@ Alternatively: `https://github.com/SAP/ui5-manifest/blob/main/schema.json` or lo
 > [!NOTE] 
 > Check `{}` - Schema Validation Status Bar.
 >
-> It can happen (especially in BASP due to reset of configs) that you do not have any validation. This is due to no default formatter being configured.
+> It can happen (especially in BAS due to reset of configs) that you do not have any validation. This is due to no default formatter being configured.
 > 
 > If the validation isn't updated once it was set: reload schema cache (command palette), navigate to different file & back, reload window or restart editor.
 
