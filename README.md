@@ -24,7 +24,7 @@
 	**A:** Depends on the type of application you're working with (UI5 application/component, Cards, etc.). Best to rely on the corresponding generator. Absolute minimum: - sap.ui section only if dependencies
 	<details>
 	<summary>Theoretical Bare Minimal Manifest</summary>
-
+		
 	Properties like `sap.ui5` would then be required for [dependencies](https://ui5.sap.com/sdk/#/topic/8521ad1955f340f9a6207d615c88d7fd).
 
 	Source: [TS Walkthrough](https://github.com/SAP-samples/ui5-typescript-walkthrough/blob/main/steps/01/webapp/manifest.json)
@@ -54,11 +54,12 @@
 	<details>
 	<summary>Details</summary>
 
+
 	There are three main places where `async` is important & used:
 	1.  The async setting of the component (within bootstrap)
  	2.  the RootView and
   	3.  within routing.
- 
+	<br> 
   	It is hard to compare these with another as they have different effects and the usage depends on what you want the result to be. Below is more of an Overview than a comparison.
 
 	Effects of `IAsyncContentCreation` Interface
@@ -68,6 +69,8 @@
   	- RootView & Routing configuration will be switched to async. This also results in changes to routes & targets!
   	- Strict Mode for View Processing. Meaning that errors will be thrown (promises will be rejected).
 
+ 	<br>
+ 
 	There is also a [change in behavior](https://github.com/SAP/openui5/commit/5981ae4115c919f278572e2d2c500933c8c41efc#diff-57834d2526e8323161a07fca4c2b67a70b1843cb7e1e8d8ea32a68876c72b0c9L1677) between Pre- and Post UI5 version `1.125` when using the Interface.
 	</details>
 
