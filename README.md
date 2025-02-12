@@ -11,13 +11,13 @@
 	**A:** Referencing the schema version and used for validation and code completion (IntelliSense in IDE). 
 	> "On the runtime side, [...] only one changed behavior based on the vesion of the manifest quite some time ago (since UI5 1.52, schema version 1.9.0)." - [UI5 Team on SO](https://stackoverflow.com/a/72123051/10323879)
 
-- **Q: Possible Bindings in Manifest? Like `{{appTitle}}` (`{{key in .properties file}}`) or `"${project.version}"`? See: [Descriptor Documentation](https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458) ( [GH issue](https://github.com/SAP/ui5-tooling/issues/403) in UI5 Tooling with `${version}`)**
-
-	**A:**
-
 - **Q: `_version` of `sap.app` (and other namespaces). Sometimes not part of scaffold: is default latest? is there a version specific structure for these namespaces as well?**
 
 	**A:** The namespace dependent `_version` property is and was barely used. It is also not part of the current scaffolding generators anymore.
+
+- **Q: Possible Bindings in Manifest? Like `{{appTitle}}` (`{{key in .properties file}}`) or `"${project.version}"`? See: [Descriptor Documentation](https://ui5.sap.com/sdk/#/topic/74038a52dcd7404e82b38be6d5fb1458) ( [GH issue](https://github.com/SAP/ui5-tooling/issues/403) in UI5 Tooling with `${version}`)**
+
+	**A:**
 
 - **Q: What is the minimum content for a manifest to work per application/component?**
 
