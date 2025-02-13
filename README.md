@@ -92,7 +92,7 @@
 
 - **Q: Are there official APIs for reading the manifest (entries) during runtime(in UI5) or during build time (UI5 Tooling)?**
 
-    A: You can access the manifest for the Component via its [API](https://ui5.sap.com/#/api/sap.ui.core.Component%23methods/getManifest) and the manifest object has [functions to access the entries in a xpath way](https://ui5.sap.com/#/api/sap.ui.core.Manifest%23methods/getEntry). For the UI5 tooling, there is no special helper available to work with the manifest. Just handle it as JSON file, maybe checking out some of the [tooling processor implementations](https://sap.github.io/ui5-tooling/v3/api/builder_lib_processors_versionInfoGenerator.js.html) helps.
+    **A:** You can access the manifest for the Component via its [API](https://ui5.sap.com/#/api/sap.ui.core.Component%23methods/getManifest) and the manifest object has [functions to access the entries in a xpath way](https://ui5.sap.com/#/api/sap.ui.core.Manifest%23methods/getEntry). For the UI5 tooling, there is no special helper available to work with the manifest. Just handle it as JSON file, maybe checking out some of the [tooling processor implementations](https://sap.github.io/ui5-tooling/v3/api/builder_lib_processors_versionInfoGenerator.js.html) helps.
 
     And… if you are using TypeScript, there are [type definitions](https://github.com/SAP/ui5-manifest/blob/main/types/manifest.d.ts) for the manifest, so you can dig through the json in a type-safe manner.
 
@@ -100,7 +100,7 @@
 
 - **Q: Why can't I just generate what I need once, and be done with it?**
 
-	A: While this is a rather jokingly asked question, it does have some merit as not everyone _wants_ to fiddle with the manifest file and not everyone does so in his day to day work. But you have to understand that the entire application itself, manifests in this file and therefore, as the application changes, so does the manifest. A living document so to say.
+	**A:** While this is a rather jokingly asked question, it does have some merit as not everyone _wants_ to fiddle with the manifest file and not everyone does so in his day to day work. But you have to understand that the entire application itself, manifests in this file and therefore, as the application changes, so does the manifest. A living document so to say.
 
 > [!TIP] 
 >
