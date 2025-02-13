@@ -24,8 +24,7 @@
 	**A:** Depends on the type of application you're working with (UI5 application/component, Cards, etc.). Best to rely on the corresponding generator. Absolute minimum: - sap.ui section only if dependencies
 	<details>
 	<summary>Theoretical Bare Minimal Manifest</summary>
-		
-	Properties like `sap.ui5` would then be required for [dependencies](https://ui5.sap.com/sdk/#/topic/8521ad1955f340f9a6207d615c88d7fd).
+	At design time, properties like `sap.app`, `sap.ui` and `_version` are required. Check the `required` section of the `$schema`. There is no runtime check preventing you from _not_ providing the `sap.ui` property for example, as can be seen below.
 
 	Source: [TS Walkthrough](https://github.com/SAP-samples/ui5-typescript-walkthrough/blob/main/steps/01/webapp/manifest.json)
 	
@@ -90,6 +89,14 @@
 	 - You can also merge schema definitions and by doing so, technically create your own, extending upon the UI5 manifest (or any other) schema! See this [explanation regarding schema inheritance](https://github.com/json-schema-org/json-schema-spec/issues/348#issuecomment-322940347). Also check out the demo example within this repository.
 	  
 	- Within `sap.ui5.config` you can also put any sort of custom configuration, as long as it adheres to the allowed types (see schema).
+
+- **Q: Are there official APIs for reading the manifest (entries) during runtime(in UI5) or during build time (UI5 Tooling)?**
+
+    A: You can access the manifest for the Component via its [API](https://ui5.sap.com/#/api/sap.ui.core.Component%23methods/getManifest) and the manifest object has [functions to access the entries in a xpath way](https://ui5.sap.com/#/api/sap.ui.core.Manifest%23methods/getEntry). For the UI5 tooling, there is no special helper available to work with the manifest. Just handle it as JSON file, maybe checking out some of the [tooling processor implementations](https://sap.github.io/ui5-tooling/v3/api/builder_lib_processors_versionInfoGenerator.js.html) helps.
+
+    And… if you are using TypeScript, there are [type definitions](https://github.com/SAP/ui5-manifest/blob/main/types/manifest.d.ts) for the manifest, so you can dig through the json in a type-safe manner.
+
+
 
 - **Q: Why can't I just generate what I need once, and be done with it?**
 
